@@ -1,0 +1,91 @@
+<div class="all">
+  <div class="welcome-section">
+    <h1>WELCOME BACK!</h1>
+    <p class="welcome-message">
+      We’re excited to have you here. Please sign in to continue your shopping
+      experience.
+    </p>
+  </div>
+
+  <div class="form-section">
+    <div class="sign-in-container">
+      <h2>SIGN IN TO YOUR ACCOUNT</h2>
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <label for="Username" class="label">Email</label>
+        <input
+          type="email"
+          formControlName="Username"
+          id="Username"
+          class="input-field"
+          (keydown)="onEmailKeydown($event)"
+        />
+        <div
+          *ngIf="
+            signInForm.get('Username')?.invalid &&
+            signInForm.get('Username')?.touched
+          "
+          class="error-message"
+        >
+          <div *ngIf="signInForm.get('Username')?.errors?.['required']">
+            Email is required
+          </div>
+          <div *ngIf="signInForm.get('Username')?.errors?.['email']">
+            Invalid email address
+          </div>
+        </div>
+
+        <br />
+
+        <label for="Password" class="label">Password</label>
+        <input
+          type="password"
+          formControlName="Password"
+          id="Password"
+          class="input-field"
+          (keydown)="onPasswordKeydown($event)"
+          #passwordInput
+        />
+        <div
+          *ngIf="
+            signInForm.get('Password')?.invalid &&
+            signInForm.get('Password')?.touched
+          "
+          class="error-message"
+        >
+          <div *ngIf="signInForm.get('Password')?.errors?.['required']">
+            Password is required
+          </div>
+          <div *ngIf="signInForm.get('Password')?.errors?.['minlength']">
+            Password must be at least 8 characters
+          </div>
+        </div>
+        <br />
+
+        <!-- Display error message -->
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <div class="button-container-wrapper">
+          <button
+            type="submit"
+            [disabled]="signInForm.invalid"
+            class="button-container"
+            #signInButton
+          >
+            Sign In
+          </button>
+        </div>
+      </form>
+      <a href="" class="forgot-password">Forgot password?</a>
+      <br /><br />
+      <p>Don't have an account?</p>
+      <button [routerLink]="['/sign-in/sign-up']" class="button-container">
+        Sign Up
+      </button>
+      <a href="" (click)="askForAdminCode($event)" class="forgot-password"
+        >Go to admins page</a
+      >
+    </div>
+  </div>
+</div>

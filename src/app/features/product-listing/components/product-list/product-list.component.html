@@ -1,0 +1,114 @@
+<div class="sub-bar">
+  <div class="welcome-message">
+    <div *ngIf="Firstname">
+      <h3 class="welcome-message">{{ Firstname | welcomeMessage }}</h3>
+    </div>
+  </div>
+
+  <div class="sort-container">
+    <button class="sort-toggle">
+      <strong class="sort-text">Sort</strong>
+      <span class="arrow-down">▼</span>
+    </button>
+    <div class="sort-options">
+      <button class="sort-option" (click)="sort('none')">None</button>
+      <button class="sort-option" (click)="sort('asc')">Sort Ascending</button>
+      <button class="sort-option" (click)="sort('desc')">
+        Sort Descending
+      </button>
+      <button class="sort-option" (click)="sort('price-asc')">
+        Price Low to High
+      </button>
+      <button class="sort-option" (click)="sort('price-desc')">
+        Price High to Low
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="ag-grid-container">
+    <h3>Filter</h3>
+    <div class="cont">
+      <ag-grid-angular
+        style="width: 100%; height: 370px"
+        [class]="themeClass"
+        [rowData]="fabricRowData"
+        [columnDefs]="fabricColDefs"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event, 'fabric')"
+        (selectionChanged)="
+          onFilterChange('fabric', getSelectedValues('fabric', 'fabric'))
+        "
+      ></ag-grid-angular>
+
+      <ag-grid-angular
+        style="width: 100%; height: 150px"
+        [class]="themeClass"
+        [rowData]="genderRowData"
+        [columnDefs]="genderColDefs"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event, 'gender')"
+        (selectionChanged)="
+          onFilterChange('gender', getSelectedValues('gender', 'gender'))
+        "
+      ></ag-grid-angular>
+
+      <ag-grid-angular
+        style="width: 100%; height: 190px"
+        [class]="themeClass"
+        [rowData]="colorRowData"
+        [columnDefs]="colorColDefs"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event, 'color')"
+        (selectionChanged)="
+          onFilterChange('color', getSelectedValues('color', 'color'))
+        "
+      ></ag-grid-angular>
+
+      <ag-grid-angular
+        style="width: 100%; height: 190px"
+        [class]="themeClass"
+        [rowData]="styleRowData"
+        [columnDefs]="styleColDefs"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event, 'style')"
+        (selectionChanged)="
+          onFilterChange('style', getSelectedValues('style', 'style'))
+        "
+      ></ag-grid-angular>
+
+      <ag-grid-angular
+        style="width: 100%; height: 150px"
+        [class]="themeClass"
+        [rowData]="typeRowData"
+        [columnDefs]="typeColDefs"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event, 'type')"
+        (selectionChanged)="
+          onFilterChange('type', getSelectedValues('type', 'type'))
+        "
+      ></ag-grid-angular>
+    </div>
+  </div>
+  <div class="product-listing-container">
+    <ng-container *ngIf="products$ | async as products">
+      <div *ngIf="filteredProducts$ | async as filteredProducts; else loading">
+        <div
+          *ngIf="filteredProducts.length; else noProducts"
+          class="product-grid"
+        >
+          <div *ngFor="let product of filteredProducts">
+            <app-product-card [product]="product"></app-product-card>
+          </div>
+        </div>
+        <ng-template #noProducts>
+          <h1>Sorry, No Products...</h1>
+        </ng-template>
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      <h1>Loading Products...</h1>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+$border-color: #D7CCC8;
+$text-color: #8D6E63;
+$text-color-sub: #A1887F;
+$background-color: #EFEBE9;
+$button-bg-color: #8D6E63;
+$padding: 10px;
+$nav-height: 60px;
+$font-size-h1: 30px;
+$font-weight-bold: bold;
+$font-size: 14px;
+$font-size-small: 24px;
+$icon-gap: 15px;
+$icon-margin-top: 5px;
+$max-width-product-card: 300px;
+$margin-left-h1: 3%;
+$category-image-size: 50px;
+$container-padding: 2rem;
+$container-border-radius: 8px;
+$shadow: rgba(0, 0, 0, 0.1);
+$button-padding: 12px;
+$margin-bottom: 5px;
+$input-padding: 10px;
+
+.favorite-products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $padding;
+  padding: $container-padding;
+  background-color: $background-color;
+  box-shadow: 0px 4px 15px $shadow;
+  border-radius: $container-border-radius;
+  margin-top: $nav-height;
+  min-height: calc(100vh - $nav-height);
+}
+
+.favorite-message {
+  flex: 1;
+  max-width: $max-width-product-card;
+  padding: $padding;
+  text-align: center;
+}
+
+.favorite-message h1 {
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  margin-bottom: $margin-bottom * 12;
+}
+
+.favorite-message p {
+  color: $text-color-sub;
+  font-size: $font-size-small;
+  margin-bottom: $padding;
+}
+
+.explore-button {
+  background-color: $button-bg-color;
+  color: #EFEBE9;
+  border: none;
+  padding: $button-padding;
+  border-radius: 4px;
+  font-size: $font-size;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.explore-button:hover {
+  background-color: #A1887F;
+}
+
+.no-favorites-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - $nav-height);
+  background-color: #D7CCC8;
+  padding: $container-padding;
+  text-align: center;
+}
+
+.no-favorites-container {
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  margin-bottom: 0;
+}
+
+.no-favorites-container p {
+  color: $text-color-sub;
+  font-size: $font-size-small;
+  margin-bottom: $padding;
+}
+
+@media (max-width: 480px) {
+  .favorite-products-container {
+    padding: 1.5rem;
+  }
+
+  .favorite-message h3 {
+    font-size: $font-size * 1.5;
+  }
+
+  .favorite-message p,
+  .no-favorites p {
+    font-size: $font-size * 0.9;
+  }
+
+  .explore-button {
+    font-size: $font-size * 0.9;
+  }
+}

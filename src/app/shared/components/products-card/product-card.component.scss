@@ -1,0 +1,23 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.product-info p,
+.product-info h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.product-container {
+  display: flex;
+}

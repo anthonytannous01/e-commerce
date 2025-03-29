@@ -1,0 +1,66 @@
+<div class="cart-container">
+  <h1 class="cart-title">Your Cart</h1>
+
+  @if (cartProducts$ | async; as cart) {
+    <div>
+      <div *ngIf="cart.length > 0; else emptyCart" class="cart-items">
+        @for (product of cart; track product) {
+          <div class="cart-item">
+            <img
+              [src]="product.image"
+              alt="{{ product.title }}"
+              class="cart-item-image"
+            />
+            <div class="cart-item-details">
+              <h2 class="cart-item-title">{{ product.title }}</h2>
+              <p class="cart-item-price">${{ product.price }}</p>
+
+              <ng-container *ngIf="isClothingCategory(product.category)">
+                <p class="cart-item-color">
+                  <strong>Color:</strong> {{ product.color }}
+                </p>
+                <p class="cart-item-size">
+                  <strong>Size:</strong> {{ product.size }}
+                </p>
+              </ng-container>
+
+              <p class="cart-item-quantity">
+                <strong>Quantity:</strong> {{ product.quantity }}
+              </p>
+            </div>
+            <div class="cart-item-actions">
+              <button class="edit-item" (click)="editProduct(product)">
+                Edit
+              </button>
+              <button
+                class="remove-item"
+                (click)="removeProductFromCart(product)"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="cart-summary">
+        <h2>Cart Summary</h2>
+        <p><strong>Total Items:</strong> {{ getTotalItems(cart) }}</p>
+        <p><strong>Total Price:</strong> ${{ getTotalPrice(cart) }}</p>
+
+        <button
+          *ngIf="cart.length > 0"
+          class="checkout-button"
+          (click)="proceedToCheckout()"
+        >
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  }
+
+  <ng-template #emptyCart>
+    <h1 class="empty-cart">Your cart is empty.</h1>
+    <p>Add items to your cart to see them here.</p>
+  </ng-template>
+</div>

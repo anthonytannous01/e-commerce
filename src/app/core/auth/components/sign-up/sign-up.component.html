@@ -1,0 +1,122 @@
+<div class="all">
+  <div class="welcome-section">
+    <h1>JOIN US TODAY!</h1>
+    <p class="welcome-message">
+      We’re thrilled to have you join our community. Please fill out the form to
+      create your account.
+    </p>
+  </div>
+
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form-section">
+    <div class="sign-in-container">
+      <h2>CREATE YOUR ACCOUNT</h2>
+
+      <label for="Firstname" class="label">Firstname</label>
+      <input
+        type="text"
+        formControlName="Firstname"
+        id="Firstname"
+        class="input-field"
+        (keydown)="onKeydown($event, lastnameInput)"
+      />
+      <div
+        *ngIf="
+          signUpForm.get('Firstname')?.invalid &&
+          signUpForm.get('Firstname')?.touched
+        "
+        class="error-message"
+      >
+        <div *ngIf="signUpForm.get('Firstname')?.errors?.['required']">
+          This field is required!
+        </div>
+      </div>
+
+      <br />
+
+      <label for="Lastname" class="label">Lastname</label>
+      <input
+        type="text"
+        formControlName="Lastname"
+        id="Lastname"
+        class="input-field"
+        (keydown)="onKeydown($event, emailInput)"
+        #lastnameInput
+      />
+      <div
+        *ngIf="
+          signUpForm.get('Lastname')?.invalid &&
+          signUpForm.get('Lastname')?.touched
+        "
+        class="error-message"
+      >
+        <div *ngIf="signUpForm.get('Lastname')?.errors?.['required']">
+          This field is required!
+        </div>
+      </div>
+      <br />
+
+      <label for="Email" class="label">Email</label>
+      <input
+        type="email"
+        formControlName="Email"
+        id="Email"
+        class="input-field"
+        (keydown)="onKeydown($event, passwordInput)"
+        #emailInput
+      />
+      <div
+        *ngIf="
+          signUpForm.get('Email')?.invalid && signUpForm.get('Email')?.touched
+        "
+        class="error-message"
+      >
+        <div *ngIf="signUpForm.get('Email')?.errors?.['required']">
+          Email is required
+        </div>
+        <div *ngIf="signUpForm.get('Email')?.errors?.['email']">
+          Invalid email address
+        </div>
+      </div>
+      <br />
+
+      <label for="Password" class="label">Password</label>
+      <input
+        type="password"
+        formControlName="Password"
+        id="Password"
+        class="input-field"
+        (keydown)="onLastKeydown($event)"
+        #passwordInput
+      />
+      <div
+        *ngIf="
+          signUpForm.get('Password')?.invalid &&
+          signUpForm.get('Password')?.touched
+        "
+        class="error-message"
+      >
+        <div *ngIf="signUpForm.get('Password')?.errors?.['required']">
+          Password is required
+        </div>
+        <div *ngIf="signUpForm.get('Password')?.errors?.['minlength']">
+          Password must be at least 8 characters
+        </div>
+      </div>
+      <br />
+
+      <button
+        type="submit"
+        [disabled]="signUpForm.invalid"
+        class="button-container"
+        #signUpButton
+      >
+        Sign Up
+      </button>
+      <a class="account">Already have an account?</a>
+      <br /><br />
+      <button [routerLink]="['/sign-in']" class="button-container">
+        Sign In
+      </button>
+    </div>
+  </form>
+</div>

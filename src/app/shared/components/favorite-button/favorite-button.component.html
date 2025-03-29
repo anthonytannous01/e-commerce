@@ -1,0 +1,7 @@
+<button mat-icon-button (click)="toggleFavorite(); $event.stopPropagation()">
+  <mat-icon
+    [ngClass]="{ pressed: isFavorite, 'not-pressed': !isFavorite }"
+    aria-label="Favorite icon"
+    >favorite</mat-icon
+  >
+</button>

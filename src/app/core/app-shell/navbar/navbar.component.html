@@ -1,0 +1,25 @@
+<nav id="desktop-nav">
+  <div class="logo">
+    <img src="assets/logo.png" alt="Logo" class="logo" />
+  </div>
+  <div>
+    <ul class="nav-links">
+      <li *ngIf="searchVisible">
+        <input
+          placeholder="Search products..."
+          [formControl]="searchInput"
+          class="search-bar"
+        />
+      </li>
+      <li>
+        <a routerLink="/product-listing" routerLinkActive="active">Home</a>
+      </li>
+      <li>
+        <a routerLink="/category" routerLinkActive="active">Categories</a>
+      </li>
+      <li><a routerLink="/favorite" routerLinkActive="active">Favorites</a></li>
+      <li><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+      <li><a routerLink="/profile" routerLinkActive="active">Account</a></li>
+    </ul>
+  </div>
+</nav>

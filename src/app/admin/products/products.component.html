@@ -1,0 +1,37 @@
+<div class="products-container">
+  <h2>Products</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="product.price"
+            class="price-input"
+          />
+        </td>
+        <td>{{ product.category }}</td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="product.stock"
+            class="stock-input"
+          />
+        </td>
+        <td>{{ product.rating }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

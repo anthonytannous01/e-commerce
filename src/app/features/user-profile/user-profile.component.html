@@ -1,0 +1,112 @@
+<div class="profile-container">
+  <div class="left-section">
+    <div class="icon-container">
+      <img [src]="profileImageUrl" alt="Profile Icon" class="profile-icon" />
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="file-input"
+      />
+    </div>
+    <div class="user-profile">
+      <h3>User Profile</h3>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="userProfileForm"
+    (ngSubmit)="onSaveChanges()"
+    class="right-container"
+  >
+    <div class="profile-content">
+      <div class="profile-section personal-details">
+        <h3>Personal Details</h3>
+        <div class="profile-item">
+          <label for="Firstname" class="label">Firstname:</label>
+          <input
+            id="Firstname"
+            formControlName="Firstname"
+            class="input-field"
+            placeholder="Enter Firstname"
+          />
+          <div
+            *ngIf="f['Firstname'].errors?.['required']"
+            class="error-message"
+          >
+            This field is required!
+          </div>
+        </div>
+        <div class="profile-item">
+          <label for="Lastname" class="label">Lastname:</label>
+          <input
+            id="Lastname"
+            formControlName="Lastname"
+            class="input-field"
+            placeholder="Enter Lastname"
+          />
+          <div *ngIf="f['Lastname'].errors?.['required']" class="error-message">
+            This field is required!
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section account-info">
+        <h3>Account Information</h3>
+        <div class="profile-item">
+          <label for="Email" class="label">Email:</label>
+          <input
+            id="Email"
+            formControlName="Email"
+            type="email"
+            class="input-field"
+            placeholder="Enter email"
+            readonly
+          />
+          <div *ngIf="f['Email'].errors?.['required']" class="error-message">
+            This field is required!
+          </div>
+          <div *ngIf="f['Email'].errors?.['email']" class="error-message">
+            Invalid email
+          </div>
+        </div>
+        <div class="profile-item">
+          <label for="Password" class="label">Password:</label>
+          <input
+            id="Password"
+            formControlName="Password"
+            type="password"
+            class="input-field"
+            placeholder="Enter password"
+          />
+          <div *ngIf="f['Password'].errors?.['required']" class="error-message">
+            This field is required!
+          </div>
+          <div
+            *ngIf="f['Password'].errors?.['minlength']"
+            class="error-message"
+          >
+            Password must be at least 8 characters
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button
+        type="submit"
+        class="button-container save-changes"
+        [disabled]="userProfileForm.invalid"
+      >
+        Save Changes
+      </button>
+      <button
+        type="button"
+        class="button-container sign-out"
+        (click)="SignOut()"
+      >
+        Sign Out
+      </button>
+    </div>
+  </form>
+</div>

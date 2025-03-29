@@ -1,0 +1,13 @@
+$color: #ccc;
+$color-pressed: #ff4d4f;
+mat-icon {
+  transition: color 0.3s ease;
+
+  &.pressed {
+    color: $color-pressed;
+  }
+
+  &.not-pressed {
+    color: $color;
+  }
+}

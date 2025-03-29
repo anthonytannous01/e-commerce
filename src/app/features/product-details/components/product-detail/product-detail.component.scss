@@ -1,0 +1,110 @@
+$padding: 8px;
+$title-color: #8D6E63;
+$background-color: #EFEBE9;
+$border-color: #D7CCC8;
+$text-color: #8D6E63;
+$text-color-sub: #A1887F;
+$button-bg: #8D6E63;
+$hover-color: #A1887F;
+
+.product-similar {
+  text-align: start;
+  color: $title-color;
+  margin: clamp(15px, 2.5vw, 20px) 0;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 600;
+}
+
+.product-listing-container {
+  padding: clamp(6px, 1vw, $padding);
+  background-color: $background-color;
+  border-radius: 8px;
+  margin-top: clamp(15px, 2.5vw, 20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(15px, 2vw, 20px);
+  padding: clamp(12px, 2vw, 16px);
+}
+
+.product-detail {
+  background-color: #D7CCC8;
+  padding: clamp(15px, 3vw, 20px);
+  border-radius: 8px;
+  margin-top: clamp(40px, 5vw, 60px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  .product-info {
+    color: $text-color;
+    
+    h2 {
+      color: $text-color;
+      margin-bottom: clamp(12px, 2vw, 16px);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 600;
+    }
+    
+    p {
+      color: $text-color-sub;
+      margin: clamp(6px, 1vw, 8px) 0;
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      line-height: 1.5;
+    }
+  }
+  
+  .product-actions {
+    margin-top: clamp(15px, 2.5vw, 20px);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    
+    button {
+      background-color: $button-bg;
+      color: #EFEBE9;
+      border: none;
+      padding: clamp(10px, 1.5vw, 12px) clamp(20px, 2.5vw, 24px);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      
+      &:hover {
+        background-color: $hover-color;
+        transform: translateY(-2px);
+      }
+      
+      &:disabled {
+        background-color: $text-color-sub;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-detail {
+    margin-top: 40px;
+    
+    .product-actions {
+      flex-direction: column;
+      
+      button {
+        width: 100%;
+      }
+    }
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,75 @@
+<div *ngIf="product; else noProduct" class="all">
+  <div class="product-detail-card">
+    <div class="product-detail-img">
+      <img
+        [src]="product.image"
+        alt="{{ product.title }}"
+        class="product-img"
+      />
+    </div>
+    <div class="product-detail-info">
+      <h1 class="product-title">{{ product.title }}</h1>
+      <p class="product-price">${{ product.price }}</p>
+      <p class="product-description">{{ product.description }}</p>
+
+      <div *ngIf="isClothingCategory()">
+        <p><strong>Color:</strong></p>
+        <div class="color-options">
+          <button
+            *ngFor="let color of availableColors"
+            class="color-btn"
+            [ngClass]="{ active: selectedColor === color }"
+            [style.background-color]="color"
+            (click)="selectColor(color)"
+          ></button>
+        </div>
+
+        <p><strong>Size:</strong></p>
+        <div class="size-options">
+          <button
+            *ngFor="let size of availableSizes"
+            class="size-btn"
+            [ngClass]="{ active: selectedSize === size }"
+            (click)="selectSize(size)"
+          >
+            {{ size }}
+          </button>
+        </div>
+      </div>
+
+      <div class="quantity-section">
+        <p><strong>Quantity:</strong></p>
+        <div class="quantity-controls">
+          <button class="quantity-btn decrement" (click)="decrement()">
+            -
+          </button>
+          <span class="quantity">{{
+            productForm.controls['quantity'].value
+          }}</span>
+          <button class="quantity-btn increment" (click)="increment()">
+            +
+          </button>
+        </div>
+      </div>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      <div class="product-actions">
+        <button
+          class="add-to-cart"
+          [ngClass]="{ added: isAddedFlag }"
+          (click)="addToCart(product.id)"
+        >
+          {{ isAddedFlag ? 'ADDED!' : 'Add to Cart' }}
+        </button>
+        <app-favorite-button
+          [productId]="product.id"
+          [isFavorite]="isFavorite(product.id)"
+          (favoriteToggled)="onFavoriteToggled($event)"
+        >
+        </app-favorite-button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noProduct>
+  <p>Product details unavailable.</p>
+</ng-template>

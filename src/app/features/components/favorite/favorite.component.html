@@ -1,0 +1,30 @@
+<div *ngIf="favoriteProducts$ | async as favorites">
+  <div *ngIf="favorites.length > 0; else noFavorites">
+    <div
+      class="favorite-products-container"
+      [class.centered]="favorites.length < 3"
+    >
+      <div class="favorite-message" *ngIf="favorites.length < 3">
+        <h1>
+          Keep Exploring Our Collection and Add More Products to Your Favorites!
+        </h1>
+        <button class="explore-button" routerLink="/product-listing">
+          Explore Products
+        </button>
+      </div>
+      <ng-container *ngFor="let product of favorites">
+        <app-product-card [product]="product"></app-product-card>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #noFavorites>
+  <div class="no-favorites-container">
+    <h1>Your Favorite Products Will Appear Here.</h1>
+    <p>You'll be able to manage your favorites and compare them easily.</p>
+    <button class="explore-button" routerLink="/product-listing">
+      Explore Products
+    </button>
+  </div>
+</ng-template>

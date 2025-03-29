@@ -1,0 +1,262 @@
+$color: #EFEBE9;
+$background-color: #A1887F;
+$background-color-dark: #6D4C41;
+$background-color-sub: #F0EAE2;
+$container-color: #FFFFFF;
+$error-color: #D32F2F;
+$button-bg-color: #A1887F;
+$shadow: rgba(0, 0, 0, 0.1);
+$font-family: Arial, sans-serif;
+$height: 100vh;
+$nav-height: 100px;
+$font-size: 14px;
+$error-font-size: 12px;
+$container-padding: 2rem;
+$padding-left: 50px;
+$container-border-radius: 8px;
+$input-padding: 10px;
+$input-margin-bottom: 15px;
+$button-padding: 12px;
+$margin-bottom: 5px;
+$max-width: 400px;
+$border-radius: 4px;
+
+.all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: $height;
+  background-color: $background-color;
+  font-family: $font-family;
+  padding: clamp(1rem, 3vw, $container-padding * 3) clamp(1rem, 2vw, $container-padding);
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.welcome-section {
+  flex: 1;
+  padding: 0 clamp(1rem, 3vw, $padding-left);
+  text-align: left;
+  color: $container-color;
+  min-width: 280px;
+  max-width: 100%;
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, $error-font-size * 4);
+    margin-bottom: clamp(1rem, 2vw, $margin-bottom * 4);
+    word-wrap: break-word;
+  }
+
+  .welcome-message {
+    font-size: clamp(0.9rem, 2vw, $error-font-size * 2);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 280px;
+  width: 100%;
+  max-width: $max-width;
+}
+
+.sign-in-container {
+  margin: clamp(1rem, 4vw, $nav-height) 0;
+  background-color: $container-color;
+  padding: clamp(1.5rem, 2vw, $container-padding);
+  border-radius: $container-border-radius;
+  box-shadow: 0px 4px 15px $shadow;
+  width: 100%;
+  max-width: $max-width;
+}
+
+.label {
+  display: block;
+  margin-bottom: clamp(4px, 1vw, $margin-bottom);
+  font-weight: bold;
+  color: $background-color;
+  font-size: clamp(13px, 1.5vw, $font-size);
+}
+
+.input-field {
+  display: block;
+  width: 100%;
+  margin-bottom: clamp(10px, 2vw, $input-margin-bottom);
+  padding: clamp(8px, 1.5vw, $input-padding);
+  font-size: clamp(13px, 1.5vw, $font-size);
+  border: 1px solid #BCAAA4;
+  border-radius: $border-radius;
+  background-color: $background-color-sub;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: $background-color-dark;
+  outline: none;
+  background-color: $container-color;
+  box-shadow: 0 0 5px rgba(109, 76, 65, 0.2);
+}
+
+h2 {
+  text-align: center;
+  font-size: clamp(18px, 3vw, $error-font-size * 2);
+  margin-bottom: clamp(1rem, 2vw, $margin-bottom * 4);
+  color: $background-color-dark;
+}
+
+.error-message {
+  color: $error-color;
+  font-size: clamp(11px, 1.5vw, $error-font-size);
+  margin-bottom: clamp(8px, 1.5vw, $input-padding);
+  padding: 8px;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid $error-color;
+  border-radius: $border-radius;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button-container {
+  background-color: $background-color;
+  color: $container-color;
+  border: none;
+  padding: clamp(10px, 1.5vw, $button-padding);
+  font-size: clamp(13px, 1.5vw, $font-size);
+  border-radius: $border-radius;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-container:disabled {
+  background-color: #BCAAA4;
+  cursor: not-allowed;
+}
+
+.button-container:hover:not(:disabled) {
+  background-color: $background-color-dark;
+  transform: translateY(-2px);
+}
+
+.forgot-password {
+  display: inline-block;
+  margin-top: clamp(8px, 1.5vw, $input-padding);
+  color: $background-color;
+  text-decoration: none;
+  font-size: clamp(13px, 1.5vw, $font-size);
+  transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  color: $background-color-dark;
+}
+
+.button-container-wrapper {
+  position: relative;
+
+  .error-overlay {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+    border-radius: $border-radius;
+    font-size: clamp(12px, 1.5vw, 14px);
+    z-index: 10;
+  }
+}
+
+@media (min-width: 993px) {
+  .welcome-section,
+  .form-section {
+    flex: 0 1 45%;
+  }
+}
+
+@media (max-width: 992px) {
+  .all {
+    padding: 2rem 1rem;
+    justify-content: space-around;
+  }
+  
+  .welcome-section,
+  .form-section {
+    flex: 0 1 45%;
+    min-width: 280px;
+    max-width: 500px;
+  }
+
+  .welcome-section {
+    h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    }
+    
+    .welcome-message {
+      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+      max-width: 400px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .all {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+
+  .welcome-section,
+  .form-section {
+    flex: 0 1 100%;
+    max-width: 600px;
+  }
+
+  .welcome-section {
+    text-align: center;
+    padding: 1rem;
+    min-width: auto;
+    
+    h1 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+    }
+    
+    .welcome-message {
+      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      padding: 0 1rem;
+      max-width: 500px;
+    }
+  }
+  
+  .sign-in-container {
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .all {
+    padding: 1rem 0.5rem;
+  }
+  
+  .welcome-section {
+    padding: 0.5rem;
+    
+    h1 {
+      margin-bottom: 0.8rem;
+    }
+  }
+  
+  .sign-in-container {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+}

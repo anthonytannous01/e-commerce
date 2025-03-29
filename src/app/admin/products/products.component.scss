@@ -1,0 +1,131 @@
+$color: #BCAAA4;
+$bg-color: #8D6E63;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+.products-container {
+  padding: clamp(0.5rem, 2vw, 1rem);
+  background-color: #D7CCC8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow-x: auto;
+
+  h2 {
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(20px, 3vw, 24px);
+    color: #6D4C41;
+    padding: 0 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    background-color: #EFEBE9;
+
+    th,
+    td {
+      padding: clamp(0.5rem, 1.5vw, 0.75rem);
+      text-align: left;
+      border-bottom: 1px solid $color;
+    }
+
+    th {
+      background-color: $bg-color;
+      color: #FFFFFF;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      white-space: nowrap;
+      font-size: clamp(14px, 1.5vw, 16px);
+    }
+
+    td {
+      vertical-align: middle;
+      font-size: clamp(13px, 1.5vw, 15px);
+    }
+
+    tr {
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background-color: $color;
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.price-input,
+.stock-input {
+  width: clamp(60px, 10vw, 80px);
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #BCAAA4;
+  text-align: right;
+  font-size: clamp(13px, 1.5vw, 14px);
+  transition: all 0.3s ease;
+  background-color: #FFFFFF;
+
+  &:focus {
+    outline: none;
+    border-color: $bg-color;
+    box-shadow: 0 0 5px rgba(141, 110, 99, 0.3);
+  }
+
+  &:hover {
+    border-color: #8D6E63;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .products-container {
+    margin: 0 -0.75rem;
+    border-radius: 0;
+    
+    h2 {
+      padding: 0 0.75rem;
+    }
+
+    table {
+      th {
+        padding: 0.75rem;
+      }
+
+      td {
+        padding: 0.75rem;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .products-container {
+    margin: 0 -0.5rem;
+    padding: 0.5rem;
+    
+    h2 {
+      padding: 0 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    table {
+      th {
+        padding: 0.5rem;
+      }
+
+      td {
+        padding: 0.5rem;
+      }
+    }
+  }
+
+  .price-input,
+  .stock-input {
+    width: 60px;
+    padding: 6px;
+  }
+}
